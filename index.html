@@ -113,6 +113,8 @@
     .highlights div { display: flex; flex-direction: column-reverse; padding: 15px; background: #eef2e3; border-radius: 16px; }
     .highlights dt { font-size: .85rem; color: var(--muted); }
     .highlights dd { margin: 0; color: var(--accent); font-size: 2rem; font-weight: 850; }
+    #about .skills-grid { margin-top: 24px; }
+    #experience .panel + .panel { margin-top: 16px; }
     #projects { padding-top: 0; }
     .project-lead .chart { background: #fffaf0; box-shadow: none; }
     @media (max-width: 820px) {
@@ -127,9 +129,8 @@
     <nav class="wrap" aria-label="Main navigation">
       <div class="nav-links">
         <a href="#home">Home</a>
-        <a href="#about">About</a>
+        <a href="#about">About &amp; Skills</a>
         <a href="#projects">Projects</a>
-        <a href="#skills">Skills</a>
         <a href="#experience">Experience</a>
         <a href="#education">Education</a>
         <a href="#contact">Contact</a>
@@ -165,15 +166,37 @@
       </div>
       <div class="wrap"><a class="discover" href="#about">More about me <span aria-hidden="true">↓</span></a></div>
     </section>
-    <section class="wrap about-layout" id="about">
-      <div>
-        <h2>About me</h2>
-        <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
+    <section class="wrap" id="about" aria-labelledby="about-title">
+      <div class="about-layout">
+        <div>
+          <h2 id="about-title">About &amp; Skills</h2>
+          <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
+        </div>
+        <dl class="highlights">
+          <div><dt>CGPA at UiTM Arau</dt><dd>3.74</dd></div>
+          <div><dt>Semesters on the Dean’s List</dt><dd>6</dd></div>
+        </dl>
       </div>
-      <dl class="highlights">
-        <div><dt>CGPA at UiTM Arau</dt><dd>3.74</dd></div>
-        <div><dt>Semesters on the Dean’s List</dt><dd>6</dd></div>
-      </dl>
+      <div class="skills-grid">
+        <article class="skill" style="--tint: #e9f3e9; --icon: #136355">
+          <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px"></i><i style="--height: 19px"></i><i style="--height: 15px"></i><i style="--height: 27px"></i></div></div>
+          <h3>Business Intelligence</h3>
+          <p>Model data and present findings through interactive reports.</p>
+          <ul class="tags"><li>Power BI</li><li>Power Query</li><li>DAX</li></ul>
+        </article>
+        <article class="skill" style="--tint: #faeadc; --icon: #a14224">
+          <div class="icon" aria-hidden="true"><div class="line-art"><i style="--length: 12px; --x: 2px; --y: 23px; --angle: -24deg"></i><i style="--length: 9px; --x: 12px; --y: 19px; --angle: 13deg"></i><i style="--length: 15px; --x: 20px; --y: 21px; --angle: -57deg"></i></div></div>
+          <h3>Data Analysis</h3>
+          <p>Clean datasets, explore patterns and analyse written feedback.</p>
+          <ul class="tags"><li>Python</li><li>Pandas</li><li>NLTK</li></ul>
+        </article>
+        <article class="skill" style="--tint: #f5efd1; --icon: #755d16">
+          <div class="icon" aria-hidden="true"><div class="layers"><i></i><i></i><i></i></div></div>
+          <h3>SQL &amp; Databases</h3>
+          <p>Query and combine structured data using joins, CTEs and window functions.</p>
+          <ul class="tags"><li>SQL</li><li>Oracle Database</li><li>MySQL</li><li>Hive</li></ul>
+        </article>
+      </div>
     </section>
     <section class="wrap" id="projects">
       <article class="project">
@@ -221,29 +244,6 @@
         </div>
       </article>
     </section>
-    <section class="wrap" id="skills">
-      <h2>Skills</h2>
-      <div class="skills-grid">
-        <article class="skill" style="--tint: #e9f3e9; --icon: #136355">
-          <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px"></i><i style="--height: 19px"></i><i style="--height: 15px"></i><i style="--height: 27px"></i></div></div>
-          <h3>Business Intelligence</h3>
-          <p>Model data and present findings through interactive reports.</p>
-          <ul class="tags"><li>Power BI</li><li>Power Query</li><li>DAX</li></ul>
-        </article>
-        <article class="skill" style="--tint: #faeadc; --icon: #a14224">
-          <div class="icon" aria-hidden="true"><div class="line-art"><i style="--length: 12px; --x: 2px; --y: 23px; --angle: -24deg"></i><i style="--length: 9px; --x: 12px; --y: 19px; --angle: 13deg"></i><i style="--length: 15px; --x: 20px; --y: 21px; --angle: -57deg"></i></div></div>
-          <h3>Data Analysis</h3>
-          <p>Clean datasets, explore patterns and analyse written feedback.</p>
-          <ul class="tags"><li>Python</li><li>Pandas</li><li>NLTK</li></ul>
-        </article>
-        <article class="skill" style="--tint: #f5efd1; --icon: #755d16">
-          <div class="icon" aria-hidden="true"><div class="layers"><i></i><i></i><i></i></div></div>
-          <h3>SQL &amp; Databases</h3>
-          <p>Query and combine structured data using joins, CTEs and window functions.</p>
-          <ul class="tags"><li>SQL</li><li>Oracle Database</li><li>MySQL</li><li>Hive</li></ul>
-        </article>
-      </div>
-    </section>
     <section class="wrap" id="experience">
       <h2>Experience</h2>
       <article class="panel">
@@ -253,6 +253,14 @@
           <li>Used Oracle SQL to retrieve assessment scores and histories for the eCareer Profiling System.</li>
           <li>Worked on student and admin portal workflows for question banks, responses and assessment results.</li>
           <li>Replaced hardcoded content with database queries and resolved issues involving SQL and data relationships.</li>
+        </ul>
+      </article>
+      <article class="panel">
+        <h3>Part-Time Factory Operator · Hershey Chocolate Factory</h3>
+        <p class="meta">Senai · June to August 2023</p>
+        <ul>
+          <li>Performed quality checks and followed standard operating procedures on the production floor.</li>
+          <li>Worked with the production team to meet production targets.</li>
         </ul>
       </article>
     </section>
