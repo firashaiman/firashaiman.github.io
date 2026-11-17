@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Muhammad Firas Haiman Bin Taha’s data analytics and business intelligence portfolio. Explore a Power BI project on Malaysian public transit.">
+  <title>Firas Haiman | Data Analytics &amp; BI</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172e28;
+      --muted: #40564c;
+      --accent: #14584b;
+      --line: #dedfd1;
+      --paper: #fffcf4;
+      --radius: 24px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.6; }
+    h1, h2, h3, p, figure { margin: 0; }
+    a { color: var(--accent); text-underline-offset: 4px; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #a14224; outline-offset: 4px; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .skip { position: absolute; left: 12px; top: -100px; background: white; padding: 10px 16px; z-index: 3; }
+    .skip:focus { top: 10px; }
+    header { background: white; border-bottom: 1px solid var(--line); }
+    nav { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px 30px; padding: 18px 0; }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .9rem; font-weight: 650; }
+    .hero { padding: clamp(55px, 9vw, 120px) 0 22px; background: radial-gradient(ellipse at 83% 37%, #edf1d8, transparent 55%), #faf4e7; }
+    .hero-layout { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(24px, 5vw, 76px); }
+    .kicker { color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+    h1, h2 { letter-spacing: -.045em; line-height: 1.07; text-wrap: balance; }
+    h1 { margin: 12px 0 18px; font-size: clamp(2.55rem, 5.6vw, 5.1rem); }
+    h1 span { color: var(--accent); }
+    h2 { margin: 8px 0 16px; font-size: clamp(2rem, 4vw, 3.35rem); }
+    h3 { font-size: 1.18rem; line-height: 1.3; }
+    .muted, .intro, .meta { color: var(--muted); }
+    .intro { max-width: 57ch; font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 10px 16px; border: 1px solid #c9d7c2; border-radius: 999px; background: white; color: var(--accent); font-weight: 750; text-decoration: none; }
+    .button:hover { background: #ecf3df; border-color: var(--accent); }
+    .primary { background: var(--accent); border-color: var(--accent); color: white; }
+    .primary:hover { background: #0d4339; }
+    .chart { background: white; padding: clamp(20px, 3vw, 32px); border: 1px solid #e1e5d4; border-radius: var(--radius); box-shadow: 0 18px 48px #24483b18; }
+    .chart figcaption { margin-bottom: 18px; font-weight: 800; }
+    .chart figcaption small { display: block; color: var(--muted); font-weight: 500; }
+    .chart ul { display: grid; gap: 13px; list-style: none; margin: 0; padding: 0; }
+    .chart .labels { display: flex; justify-content: space-between; gap: 12px; font-size: .88rem; }
+    .track { margin-top: 5px; background: #eceee2; border-radius: 99px; overflow: hidden; }
+    .fill { display: block; width: var(--value); height: 9px; border-radius: 99px; background: var(--bar); }
+    section:not(.hero) { padding: clamp(46px, 7vw, 80px) 0; }
+    .project { background: #fff; padding: clamp(20px, 4vw, 45px); border: 1px solid var(--line); border-top: 5px solid #317d68; border-radius: var(--radius); }
+    .project .intro { max-width: 75ch; }
+    .work-grid, .skills-grid, .bio-grid { display: grid; gap: 16px; }
+    .work-grid, .skills-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .work-grid { margin-top: 24px; }
+    .work-step { background: #f4f5e9; border-radius: 16px; padding: 19px; }
+    .work-step p, .skill p { margin-top: 8px; color: var(--muted); }
+    .skill { padding: 23px; background: var(--tint); border: 1px solid var(--line); border-radius: var(--radius); }
+    .icon { position: relative; display: grid; place-items: center; width: 58px; height: 58px; margin-bottom: 17px; border-radius: 16px; background: white; color: var(--icon); }
+    .bars { display: flex; align-items: end; gap: 4px; height: 28px; }
+    .bars i { width: 6px; height: var(--height); border-radius: 3px 3px 1px 1px; background: currentColor; }
+    .line-art { position: relative; height: 31px; width: 34px; }
+    .line-art i { position: absolute; height: 3px; width: var(--length); left: var(--x); top: var(--y); border-radius: 2px; background: currentColor; transform: rotate(var(--angle)); transform-origin: left center; }
+    .layers { display: grid; gap: 3px; }
+    .layers i { width: 29px; height: 7px; border: 2px solid currentColor; border-radius: 50%; }
+    .tags { display: flex; flex-wrap: wrap; gap: 7px; margin: 14px 0 0; padding: 0; list-style: none; }
+    .tags li { padding: 3px 9px; border: 1px solid #d7ddcc; border-radius: 99px; background: white; font-size: .79rem; font-weight: 650; }
+    .bio-grid { grid-template-columns: 1fr 1fr; }
+    .panel { padding: 24px; background: white; border: 1px solid var(--line); border-radius: var(--radius); }
+    .panel h3 { margin-bottom: 6px; }
+    .panel p + p { margin-top: 9px; }
+    .panel ul { padding-left: 20px; margin: 12px 0 0; }
+    .panel li + li { margin-top: 7px; }
+    .learning { margin-top: 16px; }
+    #contact { background: linear-gradient(120deg, #edf3df, #faecd9); }
+    footer { padding: 22px 0; font-size: .88rem; }
+    @media (max-width: 820px) {
+      .hero-layout, .bio-grid { grid-template-columns: 1fr; }
+      .chart { max-width: 540px; }
+      .skills-grid, .work-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 400px) {
+      .wrap { width: calc(100% - 28px); }
+      .actions .button { width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+    .hero .kicker { display: inline-block; padding: 6px 13px; border-radius: 999px; background: #e9efd9; }
+    .hero h1 { font-size: clamp(3.5rem, 8vw, 7rem); }
+    .hero h1 span { color: #ad472a; }
+    .profile-link { display: inline-flex; gap: 6px; margin-top: 19px; font-size: .9rem; font-weight: 700; }
+    .discover { display: block; width: fit-content; margin: clamp(32px, 6vw, 78px) auto 0; font-size: .85rem; font-weight: 750; text-decoration: none; }
+    .discover span { margin-left: 6px; color: #ad472a; }
+    .hero-art { position: relative; isolation: isolate; width: min(100%, 380px); aspect-ratio: 1; margin-inline: auto; display: grid; place-items: center; }
+    .orbit, .hero-chart { position: absolute; }
+    .orbit { border: 1px solid #718b7180; border-radius: 47% 53% 55% 45% / 54% 41% 59% 46%; }
+    .orbit-outer { inset: 1%; transform: rotate(-15deg); }
+    .orbit-inner { inset: 8%; transform: rotate(27deg); }
+    .hero-chart { display: flex; align-items: flex-end; justify-content: center; gap: 8%; inset: 13%; padding: 17% 19%; border-radius: 40% 60% 47% 53% / 54% 41% 59% 46%; background: linear-gradient(135deg, #256b54, #133d34); box-shadow: 0 16px 38px #17372c32; }
+    .hero-chart span { flex: 1; height: var(--height); border-radius: 7px 7px 2px 2px; background: var(--fill); }
+    .art-label { position: absolute; display: flex; align-items: center; gap: 7px; padding: 8px 13px; background: #fffaf0; border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 4px 12px #17372c18; font-size: .85rem; font-weight: 800; }
+    .art-label i { width: 9px; height: 9px; border-radius: 50%; background: var(--dot); }
+    .art-sql { top: 19%; left: 1%; --dot: #317d68; }
+    .art-bi { right: 0; top: 44%; --dot: #c28b23; }
+    .art-python { bottom: 12%; left: 15%; --dot: #b85b3b; }
+    .about-layout, .project-lead { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(20px, 4vw, 54px); }
+    .highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0; }
+    .highlights div { display: flex; flex-direction: column-reverse; padding: 15px; background: #eef2e3; border-radius: 16px; }
+    .highlights dt { font-size: .85rem; color: var(--muted); }
+    .highlights dd { margin: 0; color: var(--accent); font-size: 2rem; font-weight: 850; }
+    #projects { padding-top: 0; }
+    .project-lead .chart { background: #fffaf0; box-shadow: none; }
+    @media (max-width: 820px) {
+      .about-layout, .project-lead { grid-template-columns: 1fr; }
+      .hero-art { width: min(100%, 310px); }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <div class="nav-links">
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Skills</a>
+        <a href="#experience">Experience</a>
+        <a href="#education">Education</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero" id="home" aria-labelledby="intro-title">
+      <div class="wrap hero-layout">
+        <div>
+          <p class="kicker">Data Analytics &amp; Business Intelligence</p>
+          <h1 id="intro-title">Firas Haiman<span>.</span></h1>
+          <p class="intro">I work with SQL, Python and Power BI. For my final-year project at UiTM Arau, I brought Malaysian transit schedules and station reviews together in one interactive report.</p>
+          <div class="actions">
+            <a class="button primary" href="#projects">Explore my featured project</a>
+            <a class="button" href="#contact">Contact me</a>
+          </div>
+          <a class="profile-link" href="https://github.com/firashaiman">GitHub <span aria-hidden="true">↗</span></a>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orbit orbit-outer"></div>
+          <div class="orbit orbit-inner"></div>
+          <div class="hero-chart">
+            <span style="--height: 36%; --fill: #b7ddc6"></span>
+            <span style="--height: 57%; --fill: #e8eed4"></span>
+            <span style="--height: 48%; --fill: #b7ddc6"></span>
+            <span style="--height: 82%; --fill: #ffc28f"></span>
+          </div>
+          <div class="art-label art-sql"><i></i> SQL</div>
+          <div class="art-label art-bi"><i></i> Power BI</div>
+          <div class="art-label art-python"><i></i> Python</div>
+        </div>
+      </div>
+      <div class="wrap"><a class="discover" href="#about">More about me <span aria-hidden="true">↓</span></a></div>
+    </section>
+    <section class="wrap about-layout" id="about">
+      <div>
+        <h2>About me</h2>
+        <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
+      </div>
+      <dl class="highlights">
+        <div><dt>CGPA at UiTM Arau</dt><dd>3.74</dd></div>
+        <div><dt>Semesters on the Dean’s List</dt><dd>6</dd></div>
+      </dl>
+    </section>
+    <section class="wrap" id="projects">
+      <article class="project">
+        <div class="project-lead">
+          <div>
+            <p class="kicker">Featured project · Transit Insight</p>
+            <h2>Urban Mobility Intelligence Dashboard</h2>
+            <p class="intro">Transit schedules show when services run. Station reviews capture how commuters describe their trips. I brought both into Power BI so users could explore service patterns, ratings and sentiment in one dashboard.</p>
+          </div>
+        <figure class="chart">
+          <figcaption>Commuter review sentiment<small>Transit Insight · 25,317 reviews shown in Power BI</small></figcaption>
+          <ul>
+            <li>
+              <div class="labels"><span>Neutral</span><strong>66.2%</strong></div>
+              <div class="track" aria-hidden="true"><span class="fill" style="--value: 66.2%; --bar: #317d68"></span></div>
+            </li>
+            <li>
+              <div class="labels"><span>Positive</span><strong>24.3%</strong></div>
+              <div class="track" aria-hidden="true"><span class="fill" style="--value: 24.3%; --bar: #c28b23"></span></div>
+            </li>
+            <li>
+              <div class="labels"><span>Negative</span><strong>9.5%</strong></div>
+              <div class="track" aria-hidden="true"><span class="fill" style="--value: 9.5%; --bar: #b85b3b"></span></div>
+            </li>
+          </ul>
+        </figure>
+        </div>
+        <div class="work-grid">
+          <div class="work-step">
+            <h3>Prepare the data</h3>
+            <p>Cleaned and consolidated schedule files and station reviews using Python and Pandas, with Hadoop and Hive for storage and querying.</p>
+          </div>
+          <div class="work-step">
+            <h3>Classify reviews</h3>
+            <p>Used NLTK to score review text and group it into positive, neutral and negative sentiment.</p>
+          </div>
+          <div class="work-step">
+            <h3>Build the report</h3>
+            <p>Created Power BI views for operations, sentiment and peak-hour patterns. Evaluated the project through a quasi-experiment and user acceptance testing.</p>
+          </div>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="https://app.powerbi.com/view?r=eyJrIjoiYTE1YTBlMGUtMTUzMC00NDZjLThmN2ItMmRlYWUyMmI3NzYxIiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D&amp;pageName=682d2257edbe6009a410" target="_blank" rel="noopener">View Power BI dashboard ↗</a>
+          <a class="button" href="https://amadslah62.wixsite.com/transit-insight/dashboard" target="_blank" rel="noopener">Project website ↗</a>
+        </div>
+      </article>
+    </section>
+    <section class="wrap" id="skills">
+      <h2>Skills</h2>
+      <div class="skills-grid">
+        <article class="skill" style="--tint: #e9f3e9; --icon: #136355">
+          <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px"></i><i style="--height: 19px"></i><i style="--height: 15px"></i><i style="--height: 27px"></i></div></div>
+          <h3>Business Intelligence</h3>
+          <p>Model data and present findings through interactive reports.</p>
+          <ul class="tags"><li>Power BI</li><li>Power Query</li><li>DAX</li></ul>
+        </article>
+        <article class="skill" style="--tint: #faeadc; --icon: #a14224">
+          <div class="icon" aria-hidden="true"><div class="line-art"><i style="--length: 12px; --x: 2px; --y: 23px; --angle: -24deg"></i><i style="--length: 9px; --x: 12px; --y: 19px; --angle: 13deg"></i><i style="--length: 15px; --x: 20px; --y: 21px; --angle: -57deg"></i></div></div>
+          <h3>Data Analysis</h3>
+          <p>Clean datasets, explore patterns and analyse written feedback.</p>
+          <ul class="tags"><li>Python</li><li>Pandas</li><li>NLTK</li></ul>
+        </article>
+        <article class="skill" style="--tint: #f5efd1; --icon: #755d16">
+          <div class="icon" aria-hidden="true"><div class="layers"><i></i><i></i><i></i></div></div>
+          <h3>SQL &amp; Databases</h3>
+          <p>Query and combine structured data using joins, CTEs and window functions.</p>
+          <ul class="tags"><li>SQL</li><li>Oracle Database</li><li>MySQL</li><li>Hive</li></ul>
+        </article>
+      </div>
+    </section>
+    <section class="wrap" id="experience">
+      <h2>Experience</h2>
+      <article class="panel">
+        <h3>Software Development Intern · UTM Digital</h3>
+        <p class="meta">Universiti Teknologi Malaysia · From September 2026</p>
+        <ul>
+          <li>Used Oracle SQL to retrieve assessment scores and histories for the eCareer Profiling System.</li>
+          <li>Worked on student and admin portal workflows for question banks, responses and assessment results.</li>
+          <li>Replaced hardcoded content with database queries and resolved issues involving SQL and data relationships.</li>
+        </ul>
+      </article>
+    </section>
+    <section class="wrap" id="education">
+      <h2>Education &amp; Learning</h2>
+      <div class="bio-grid">
+        <article class="panel">
+          <h3>Bachelor of Information Technology (Hons.)</h3>
+          <p class="meta">Universiti Teknologi MARA (UiTM), Arau</p>
+          <p>Big Data specialization · CGPA 3.74 · Dean’s List for six semesters</p>
+        </article>
+        <article class="panel">
+          <h3>Foundation in Physical Science</h3>
+          <p class="meta">Universiti Malaya · July 2022 to May 2023</p>
+          <p>CGPA 3.56</p>
+        </article>
+      </div>
+      <article class="panel learning">
+        <h3>Completed courses and tracks</h3>
+        <ul>
+          <li><strong>DataCamp</strong> · Data Analyst track, Data Analyst in Python</li>
+          <li><strong>Kaggle</strong> · Advanced SQL, Pandas, Data Cleaning, Data Visualization</li>
+        </ul>
+      </article>
+    </section>
+    <section id="contact">
+      <div class="wrap">
+        <h2>Get in touch</h2>
+        <p class="intro">I’m open to entry-level Data Analyst and BI Analyst opportunities.</p>
+        <div class="actions">
+          <a class="button primary" href="https://github.com/firashaiman">GitHub profile ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><p>© 2026 Muhammad Firas Haiman Bin Taha</p></footer>
+</body>
+</html>
