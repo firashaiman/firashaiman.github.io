@@ -52,7 +52,7 @@
     .chart .labels { display: flex; justify-content: space-between; gap: 12px; font-size: .88rem; }
     .track { margin-top: 5px; background: #eceee2; border-radius: 99px; overflow: hidden; }
     .fill { display: block; width: var(--value); height: 9px; border-radius: 99px; background: var(--bar); }
-    section:not(.hero) { padding: clamp(46px, 7vw, 80px) 0; }
+    section:not(.hero) { padding: clamp(20px, 2.7vw, 34px) 0; }
     .project { background: #fff; padding: clamp(20px, 4vw, 45px); border: 1px solid var(--line); border-top: 5px solid #317d68; border-radius: var(--radius); }
     .project .intro { max-width: 75ch; }
     .work-grid, .skills-grid, .bio-grid { display: grid; gap: 16px; }
@@ -109,13 +109,45 @@
     .art-bi { right: 0; top: 44%; --dot: #c28b23; }
     .art-python { bottom: 12%; left: 15%; --dot: #b85b3b; }
     .project-lead { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(20px, 4vw, 54px); }
-    #about .skills-grid { margin-top: 24px; }
+    #about .skills-grid { margin-top: 20px; }
     #experience .panel + .panel { margin-top: 16px; }
     #projects { padding-top: 0; }
     .project-lead .chart { background: #fffaf0; box-shadow: none; }
     @media (max-width: 820px) {
       .project-lead { grid-template-columns: 1fr; }
       .hero-art { width: min(100%, 310px); }
+    }
+
+    .skill.is-animating .bars i {
+      transform-origin: center bottom;
+      animation: skill-bars 2s ease-in-out 2;
+      animation-delay: calc(var(--step) * 105ms);
+    }
+    .skill.is-animating .line-art i {
+      animation: skill-line 2s ease-in-out 2;
+      animation-delay: calc(var(--step) * 110ms);
+    }
+    .skill.is-animating .layers i {
+      animation: skill-layers 2s ease-in-out 2;
+      animation-delay: calc(var(--step) * 115ms);
+    }
+    @keyframes skill-bars {
+      0%, 100% { transform: scaleY(1); }
+      35% { transform: scaleY(.38); }
+      65% { transform: scaleY(.87); }
+    }
+    @keyframes skill-line {
+      0%, 100% { transform: rotate(var(--angle)) scaleX(1); opacity: 1; }
+      15% { transform: rotate(var(--angle)) scaleX(.1); opacity: .4; }
+      52% { transform: rotate(var(--angle)) scaleX(1); opacity: 1; }
+    }
+    @keyframes skill-layers {
+      0%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-3px); background-color: currentColor; }
+      70% { transform: translateY(0); }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .skill.is-animating .icon i { animation: none; }
     }
   </style>
 </head>
@@ -167,19 +199,19 @@
       <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
       <div class="skills-grid">
         <article class="skill" style="--tint: #e9f3e9; --icon: #136355">
-          <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px"></i><i style="--height: 19px"></i><i style="--height: 15px"></i><i style="--height: 27px"></i></div></div>
+          <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px; --step: 0"></i><i style="--height: 19px; --step: 1"></i><i style="--height: 15px; --step: 2"></i><i style="--height: 27px; --step: 3"></i></div></div>
           <h3>Business Intelligence</h3>
           <p>Model data and present findings through interactive reports.</p>
           <ul class="tags"><li>Power BI</li><li>Power Query</li><li>DAX</li></ul>
         </article>
         <article class="skill" style="--tint: #faeadc; --icon: #a14224">
-          <div class="icon" aria-hidden="true"><div class="line-art"><i style="--length: 12px; --x: 2px; --y: 23px; --angle: -24deg"></i><i style="--length: 9px; --x: 12px; --y: 19px; --angle: 13deg"></i><i style="--length: 15px; --x: 20px; --y: 21px; --angle: -57deg"></i></div></div>
+          <div class="icon" aria-hidden="true"><div class="line-art"><i style="--length: 12px; --x: 2px; --y: 23px; --angle: -24deg; --step: 0"></i><i style="--length: 9px; --x: 12px; --y: 19px; --angle: 13deg; --step: 1"></i><i style="--length: 15px; --x: 20px; --y: 21px; --angle: -57deg; --step: 2"></i></div></div>
           <h3>Data Analysis</h3>
           <p>Clean datasets, explore patterns and analyse written feedback.</p>
           <ul class="tags"><li>Python</li><li>Pandas</li><li>NLTK</li></ul>
         </article>
         <article class="skill" style="--tint: #f5efd1; --icon: #755d16">
-          <div class="icon" aria-hidden="true"><div class="layers"><i></i><i></i><i></i></div></div>
+          <div class="icon" aria-hidden="true"><div class="layers"><i style="--step: 0"></i><i style="--step: 1"></i><i style="--step: 2"></i></div></div>
           <h3>SQL &amp; Databases</h3>
           <p>Query and combine structured data using joins, CTEs and window functions.</p>
           <ul class="tags"><li>SQL</li><li>Oracle Database</li><li>MySQL</li><li>Hive</li></ul>
@@ -285,5 +317,19 @@
     </section>
   </main>
   <footer class="wrap"><p>© 2026 Muhammad Firas Haiman Bin Taha</p></footer>
+
+  <script>
+    const skillCards = document.querySelectorAll(".skills-grid .skill");
+
+    if (skillCards.length && "IntersectionObserver" in window) {
+      const skillAnimationObserver = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          entry.target.classList.toggle("is-animating", entry.isIntersecting);
+        });
+      }, { threshold: 0.3 });
+
+      skillCards.forEach((card) => skillAnimationObserver.observe(card));
+    }
+  </script>
 </body>
 </html>
