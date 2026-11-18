@@ -108,17 +108,13 @@
     .art-sql { top: 19%; left: 1%; --dot: #317d68; }
     .art-bi { right: 0; top: 44%; --dot: #c28b23; }
     .art-python { bottom: 12%; left: 15%; --dot: #b85b3b; }
-    .about-layout, .project-lead { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(20px, 4vw, 54px); }
-    .highlights { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 0; }
-    .highlights div { display: flex; flex-direction: column-reverse; padding: 15px; background: #eef2e3; border-radius: 16px; }
-    .highlights dt { font-size: .85rem; color: var(--muted); }
-    .highlights dd { margin: 0; color: var(--accent); font-size: 2rem; font-weight: 850; }
+    .project-lead { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(20px, 4vw, 54px); }
     #about .skills-grid { margin-top: 24px; }
     #experience .panel + .panel { margin-top: 16px; }
     #projects { padding-top: 0; }
     .project-lead .chart { background: #fffaf0; box-shadow: none; }
     @media (max-width: 820px) {
-      .about-layout, .project-lead { grid-template-columns: 1fr; }
+      .project-lead { grid-template-columns: 1fr; }
       .hero-art { width: min(100%, 310px); }
     }
   </style>
@@ -167,16 +163,8 @@
       <div class="wrap"><a class="discover" href="#about">More about me <span aria-hidden="true">↓</span></a></div>
     </section>
     <section class="wrap" id="about" aria-labelledby="about-title">
-      <div class="about-layout">
-        <div>
-          <h2 id="about-title">About &amp; Skills</h2>
-          <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
-        </div>
-        <dl class="highlights">
-          <div><dt>CGPA at UiTM Arau</dt><dd>3.74</dd></div>
-          <div><dt>Semesters on the Dean’s List</dt><dd>6</dd></div>
-        </dl>
-      </div>
+      <h2 id="about-title">About &amp; Skills</h2>
+      <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
       <div class="skills-grid">
         <article class="skill" style="--tint: #e9f3e9; --icon: #136355">
           <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px"></i><i style="--height: 19px"></i><i style="--height: 15px"></i><i style="--height: 27px"></i></div></div>
@@ -270,7 +258,7 @@
         <article class="panel">
           <h3>Bachelor of Information Technology (Hons.)</h3>
           <p class="meta">Universiti Teknologi MARA (UiTM), Arau</p>
-          <p>Big Data specialization · CGPA 3.74 · Dean’s List for six semesters</p>
+          <p>Big Data specialization · CGPA 3.78 · Dean’s List for all semesters</p>
         </article>
         <article class="panel">
           <h3>Foundation in Physical Science</h3>
