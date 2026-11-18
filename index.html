@@ -109,7 +109,10 @@
     .art-bi { right: 0; top: 44%; --dot: #c28b23; }
     .art-python { bottom: 12%; left: 15%; --dot: #b85b3b; }
     .project-lead { display: grid; grid-template-columns: 1.25fr 1fr; align-items: center; gap: clamp(20px, 4vw, 54px); }
-    #about .skills-grid { margin-top: 20px; }
+    .skills-motion-toggle { margin: 14px 4px 0 0; accent-color: var(--accent); vertical-align: middle; }
+    .skills-motion-label { color: var(--muted); font-size: .85rem; vertical-align: middle; cursor: pointer; }
+    .skills-motion-toggle:checked ~ .skills-grid .icon i { animation-play-state: paused; }
+    #about .skills-grid { margin-top: 14px; }
     #experience .panel + .panel { margin-top: 16px; }
     #projects { padding-top: 0; }
     .project-lead .chart { background: #fffaf0; box-shadow: none; }
@@ -118,17 +121,17 @@
       .hero-art { width: min(100%, 310px); }
     }
 
-    .skill.is-animating .bars i {
+    .skill .bars i {
       transform-origin: center bottom;
-      animation: skill-bars 2s ease-in-out 2;
+      animation: skill-bars 2s ease-in-out infinite;
       animation-delay: calc(var(--step) * 105ms);
     }
-    .skill.is-animating .line-art i {
-      animation: skill-line 2s ease-in-out 2;
+    .skill .line-art i {
+      animation: skill-line 2s ease-in-out infinite;
       animation-delay: calc(var(--step) * 110ms);
     }
-    .skill.is-animating .layers i {
-      animation: skill-layers 2s ease-in-out 2;
+    .skill .layers i {
+      animation: skill-layers 2s ease-in-out infinite;
       animation-delay: calc(var(--step) * 115ms);
     }
     @keyframes skill-bars {
@@ -147,7 +150,8 @@
       70% { transform: translateY(0); }
     }
     @media (prefers-reduced-motion: reduce) {
-      .skill.is-animating .icon i { animation: none; }
+      .skill .icon i { animation: none; }
+      .skills-motion-toggle, .skills-motion-label { display: none; }
     }
   </style>
 </head>
@@ -197,6 +201,8 @@
     <section class="wrap" id="about" aria-labelledby="about-title">
       <h2 id="about-title">About &amp; Skills</h2>
       <p class="intro">I’m a final-year IT student pursuing Data Analyst and BI Analyst roles. At UTM Digital, I work with Oracle assessment data for student and admin portals. In my final-year project, I used a different kind of data to answer a practical question: what can timetables and station reviews tell us about Malaysian public transport?</p>
+      <input class="skills-motion-toggle" type="checkbox" id="pause-skill-motion">
+      <label class="skills-motion-label" for="pause-skill-motion">Pause skill animations</label>
       <div class="skills-grid">
         <article class="skill" style="--tint: #e9f3e9; --icon: #136355">
           <div class="icon" aria-hidden="true"><div class="bars"><i style="--height: 12px; --step: 0"></i><i style="--height: 19px; --step: 1"></i><i style="--height: 15px; --step: 2"></i><i style="--height: 27px; --step: 3"></i></div></div>
@@ -318,18 +324,5 @@
   </main>
   <footer class="wrap"><p>© 2026 Muhammad Firas Haiman Bin Taha</p></footer>
 
-  <script>
-    const skillCards = document.querySelectorAll(".skills-grid .skill");
-
-    if (skillCards.length && "IntersectionObserver" in window) {
-      const skillAnimationObserver = new IntersectionObserver((entries) => {
-        entries.forEach((entry) => {
-          entry.target.classList.toggle("is-animating", entry.isIntersecting);
-        });
-      }, { threshold: 0.3 });
-
-      skillCards.forEach((card) => skillAnimationObserver.observe(card));
-    }
-  </script>
 </body>
 </html>
