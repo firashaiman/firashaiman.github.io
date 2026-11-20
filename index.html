@@ -60,6 +60,21 @@
     .work-grid { margin-top: 24px; }
     .work-step { background: #f4f5e9; border-radius: 16px; padding: 19px; }
     .work-step p, .skill p { margin-top: 8px; color: var(--muted); }
+    .project-stack {
+      margin-top: 26px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      text-align: center;
+    }
+    .project-stack h3 {
+      color: var(--accent);
+      font-size: .76rem;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+    .project-stack .tags { justify-content: center; margin-top: 10px; }
+    .project-stack .tags li { padding: 4px 11px; background: #f4f5e9; }
+    .project > .actions { justify-content: center; margin-top: 18px; }
     .skill { padding: 23px; background: var(--tint); border: 1px solid var(--line); border-radius: var(--radius); }
     .icon { position: relative; display: grid; place-items: center; width: 58px; height: 58px; margin-bottom: 17px; border-radius: 16px; background: white; color: var(--icon); }
     .bars { display: flex; align-items: end; gap: 4px; height: 28px; }
@@ -258,8 +273,22 @@
             <p>Created Power BI views for operations, sentiment and peak-hour patterns. Evaluated the project through a quasi-experiment and user acceptance testing.</p>
           </div>
         </div>
+        <div class="project-stack">
+          <h3>Tech stack</h3>
+          <ul class="tags" role="list">
+            <li>Python</li>
+            <li>Pandas</li>
+            <li>NLTK VADER</li>
+            <li>Hadoop HDFS</li>
+            <li>Apache Hive</li>
+            <li>Power BI</li>
+            <li>DAX</li>
+            <li>Wix</li>
+          </ul>
+        </div>
         <div class="actions">
           <a class="button primary" href="https://app.powerbi.com/view?r=eyJrIjoiYTE1YTBlMGUtMTUzMC00NDZjLThmN2ItMmRlYWUyMmI3NzYxIiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D&amp;pageName=682d2257edbe6009a410" target="_blank" rel="noopener">View Power BI dashboard ↗</a>
+          <a class="button" href="https://github.com/firashaiman/urban-mobility-intelligence" target="_blank" rel="noopener">View GitHub repository ↗</a>
           <a class="button" href="https://amadslah62.wixsite.com/transit-insight/dashboard" target="_blank" rel="noopener">Project website ↗</a>
         </div>
       </article>
