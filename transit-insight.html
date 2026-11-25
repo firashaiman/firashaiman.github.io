@@ -103,6 +103,19 @@
         <li><h3>Build the report</h3><p>I used Hadoop HDFS for storage and Apache Hive for querying. Power BI and DAX supported comparisons across modes, stations, and time periods.</p></li>
       </ol>
     </section>
+    <section class="section wrap" aria-labelledby="stack-heading">
+      <h2 id="stack-heading">Tech stack</h2>
+      <ul class="workflow" role="list">
+        <li><h3>Python</h3><p>Ran the scripts that converted the raw schedule and review files into datasets for reporting.</p></li>
+        <li><h3>Pandas</h3><p>Joined GTFS tables and matched reviews to station metadata by place ID. It also helped calculate scheduled dwell and travel times.</p></li>
+        <li><h3>NLTK VADER</h3><p>Scored review text and classified it as positive, neutral, or negative. The scoring used English translations when available.</p></li>
+        <li><h3>Hadoop HDFS</h3><p>Stored the prepared schedule and review files for querying.</p></li>
+        <li><h3>Apache Hive</h3><p>Queried the data stored in HDFS using SQL to inspect and analyze the prepared tables.</p></li>
+        <li><h3>Power BI</h3><p>Brought schedule metrics, station ratings, and review sentiment together in an interactive report.</p></li>
+        <li><h3>DAX</h3><p>Defined measures that recalculate when readers filter by transit mode, station, or time period.</p></li>
+        <li><h3>Wix</h3><p>Hosted the public Transit Insight website and presented the Power BI dashboard to visitors.</p></li>
+      </ul>
+    </section>
     <section class="section wrap" aria-labelledby="findings-heading">
       <h2 id="findings-heading">What the analysis found</h2>
       <ul class="findings">
