@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Muhammad Firas Haiman Bin Taha’s data analytics and business intelligence portfolio. Explore a Power BI project on Malaysian public transit.">
+  <meta name="description" content="Muhammad Firas Haiman Bin Taha’s data analytics and business intelligence portfolio. Explore Power BI projects in Malaysian public transit and retail profitability.">
   <title>Firas Haiman | Data Analytics &amp; BI</title>
   <style>
     :root {
@@ -164,6 +164,11 @@
     @media (prefers-reduced-motion: reduce) {
       .skill .icon i { animation: none; }
     }
+    .sales-project { margin-top: 24px; }
+    .sales-previews { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 310px), 1fr)); gap: 16px; margin: 24px 0; }
+    .sales-previews figure { margin: 0; }
+    .sales-previews img { display: block; width: 100%; height: auto; border: 1px solid var(--line); border-radius: 10px; }
+    .sales-previews figcaption { margin-top: 6px; color: var(--muted); font-size: .875rem; }
   </style>
 </head>
 <body>
@@ -290,6 +295,26 @@
           <a class="button primary" href="https://app.powerbi.com/view?r=eyJrIjoiYTE1YTBlMGUtMTUzMC00NDZjLThmN2ItMmRlYWUyMmI3NzYxIiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D&amp;pageName=682d2257edbe6009a410" target="_blank" rel="noopener">View Power BI dashboard ↗</a>
           <a class="button" href="https://github.com/firashaiman/urban-mobility-intelligence" target="_blank" rel="noopener">View GitHub repository ↗</a>
           <a class="button" href="https://amadslah62.wixsite.com/transit-insight/dashboard" target="_blank" rel="noopener">Project website ↗</a>
+        </div>
+      </article>
+      <article class="project sales-project" id="sales-performance">
+        <p class="kicker">Power BI · Retail analytics</p>
+        <h2>Sales Performance &amp; Profitability Dashboard</h2>
+        <p class="intro">I built a two-page Power BI report to track monthly sales and investigate how profit varies by product subcategory, year and discount rate.</p>
+        <div class="sales-previews">
+          <figure>
+            <img src="assets/sales-performance/sales-overview.png" alt="Sales overview with sales and profit KPIs, monthly trends and category comparisons" loading="lazy">
+            <figcaption>Sales overview</figcaption>
+          </figure>
+          <figure>
+            <img src="assets/sales-performance/profitability-analysis.png" alt="Profitability page showing profit by subcategory and matrices by discount rate and year" loading="lazy">
+            <figcaption>Profitability analysis</figcaption>
+          </figure>
+        </div>
+        <p><strong>Finding:</strong> Machine sales rose 57% from 2019 to 2021, while profit margin fell from 10.7% to −6.6%.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.powerbi.com/view?r=eyJrIjoiM2RjMGFjNTUtOTFjNS00M2EyLWFjOWItMTA5Mjk1OGJmOTE0IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D" target="_blank" rel="noopener">View interactive Power BI report ↗</a>
+          <a class="button" href="https://github.com/firashaiman/retail-sales-profitability-powerbi" target="_blank" rel="noopener">View GitHub repository ↗</a>
         </div>
       </article>
     </section>
