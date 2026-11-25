@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A MySQL and Power BI case study on why sales growth in the South region coincided with lower profit.">
+  <title>Retail Sales &amp; Profitability | Firas Haiman</title>
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #172e28;
+      --muted: #40564c;
+      --accent: #14584b;
+      --line: #dedfd1;
+      --paper: #fffcf4;
+      --radius: 24px;
+      font-family: Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background: var(--paper); color: var(--ink); line-height: 1.6; }
+    h1, h2, h3, p, figure { margin: 0; }
+    a { color: var(--accent); text-underline-offset: 4px; }
+    a:focus-visible, summary:focus-visible { outline: 3px solid #a14224; outline-offset: 4px; }
+    .wrap { width: min(1120px, calc(100% - 40px)); margin-inline: auto; }
+    .skip { position: absolute; left: 12px; top: -100px; background: white; padding: 10px 16px; z-index: 3; }
+    .skip:focus { top: 10px; }
+    header { background: white; border-bottom: 1px solid var(--line); }
+    nav { display: flex; align-items: center; justify-content: flex-end; flex-wrap: wrap; gap: 12px 30px; padding: 18px 0; }
+    nav a { text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .nav-links { display: flex; flex-wrap: wrap; gap: 6px 20px; font-size: .9rem; font-weight: 650; }
+    .hero { padding: clamp(55px, 9vw, 120px) 0 22px; background: radial-gradient(ellipse at 83% 37%, #edf1d8, transparent 55%), #faf4e7; }
+    .hero-layout { display: grid; grid-template-columns: 1.15fr .85fr; align-items: center; gap: clamp(24px, 5vw, 76px); }
+    .kicker { color: var(--accent); font-size: .8rem; font-weight: 800; letter-spacing: .09em; text-transform: uppercase; }
+    h1, h2 { letter-spacing: -.045em; line-height: 1.07; text-wrap: balance; }
+    h1 { margin: 12px 0 18px; font-size: clamp(2.55rem, 5.6vw, 5.1rem); }
+    h1 span { color: var(--accent); }
+    h2 { margin: 8px 0 16px; font-size: clamp(2rem, 4vw, 3.35rem); }
+    h3 { font-size: 1.18rem; line-height: 1.3; }
+    .muted, .intro, .meta { color: var(--muted); }
+    .intro { max-width: 57ch; font-size: 1.08rem; }
+    .actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
+    .button { display: inline-flex; align-items: center; justify-content: center; min-height: 46px; padding: 10px 16px; border: 1px solid #c9d7c2; border-radius: 999px; background: white; color: var(--accent); font-weight: 750; text-decoration: none; }
+    .button:hover { background: #ecf3df; border-color: var(--accent); }
+    .primary { background: var(--accent); border-color: var(--accent); color: white; }
+    .primary:hover { background: #0d4339; }
+
+    nav { justify-content: space-between; }
+    nav .brand { font-weight: 800; }
+    .hero { padding: clamp(36px, 7vw, 82px) 0; }
+    .hero h1 { max-width: 17ch; }
+    .section { padding: clamp(30px, 5vw, 60px) 0; }
+    .section + .section { border-top: 1px solid var(--line); }
+    .section p { max-width: 76ch; }
+    .metrics, .workflow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 225px), 1fr)); gap: 14px; margin: 24px 0 0; padding: 0; }
+    .metrics div, .workflow li, .findings li { background: white; border: 1px solid var(--line); border-radius: 16px; padding: clamp(16px, 2.5vw, 24px); }
+    .metrics dt { color: var(--muted); font-size: .91rem; }
+    .metrics dd { margin: 0; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.25rem); font-variant-numeric: tabular-nums; }
+    .workflow { list-style: none; }
+    .workflow p, .findings p { color: var(--muted); margin-top: 8px; }
+    .findings { display: grid; gap: 12px; padding: 0; margin: 20px 0 0; list-style: none; }
+    .findings li { border-left: 4px solid #317d68; }
+    .previews { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 440px), 1fr)); gap: 18px; }
+    .previews figure { min-width: 0; }
+    .previews img { width: 100%; height: auto; display: block; border-radius: 10px; border: 1px solid var(--line); }
+    figcaption { margin-top: 8px; color: var(--muted); }
+    figcaption strong { color: var(--ink); }
+    details { margin-top: 20px; border: 1px solid var(--line); border-radius: 12px; padding: 14px 18px; background: white; }
+    summary { font-weight: 750; cursor: pointer; }
+    pre { margin: 16px 0 0; padding: 16px; max-width: 100%; overflow: auto; background: #f1f3e9; border-radius: 8px; }
+    footer { padding-block: 24px; border-top: 1px solid var(--line); color: var(--muted); }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip">Skip to content</a>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="index.html">Firas Haiman</a>
+      <a href="index.html#projects">← Back to projects</a>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero">
+      <div class="wrap">
+        <p class="kicker">Retail analytics · MySQL · Power BI</p>
+        <h1>Retail Sales &amp; Profitability</h1>
+        <p class="intro">Sales in the South region grew by <strong>$29,295.63</strong> from 2020 to 2021, while profit fell by <strong>$8,853.90</strong>. I used MySQL and Power BI to trace where that decline was concentrated.</p>
+        <div class="actions">
+          <a class="button primary" href="https://app.powerbi.com/view?r=eyJrIjoiM2RjMGFjNTUtOTFjNS00M2EyLWFjOWItMTA5Mjk1OGJmOTE0IiwidCI6ImNkY2JiMGUyLTlmZWEtNGY1NC04NjcwLTY3MjcwNzc5N2FkYSIsImMiOjEwfQ%3D%3D">Open interactive report</a>
+          <a class="button" href="https://github.com/firashaiman/retail-sales-profitability-powerbi">View project on GitHub</a>
+        </div>
+        <dl class="metrics" aria-label="Overall results, 2018–2021">
+          <div><dt>Total sales · 2018–2021</dt><dd>$2.30M</dd></div>
+          <div><dt>Total profit · 2018–2021</dt><dd>$286.40K</dd></div>
+          <div><dt>Profit margin · 2018–2021</dt><dd>12.5%</dd></div>
+        </dl>
+      </div>
+    </section>
+    <section class="section wrap" aria-labelledby="workflow-heading">
+      <h2 id="workflow-heading">Data and workflow</h2>
+      <p>The Tableau Sample Superstore dataset covers 2018–2021. It contains 9,994 order lines with order dates, regions, product categories, sales, profit, and discount rates.</p>
+      <ol class="workflow">
+        <li><h3>Prepare the data</h3><p>I staged the source data in MySQL, parsed the order dates, standardized field names, and checked the row count before exporting to CSV.</p></li>
+        <li><h3>Investigate the decline</h3><p>I compared 2020 and 2021 using SQL, then narrowed the analysis from region to category, subcategory, and discount rate.</p></li>
+        <li><h3>Build the report</h3><p>I used DAX to calculate profit margin and highlight losses. The two Power BI pages let readers explore trends and investigate profitability.</p></li>
+      </ol>
+      <details>
+        <summary>See the MySQL query for the regional comparison</summary>
+        <pre><code>SELECT
+    region,
+    ROUND(SUM(CASE WHEN sales_year = 2021 THEN sales ELSE -sales END), 2) AS sales_change,
+    ROUND(SUM(CASE WHEN sales_year = 2021 THEN profit ELSE -profit END), 2) AS profit_change
+FROM (
+    SELECT
+        `Region` AS region,
+        YEAR(STR_TO_DATE(TRIM(`Order Date`), &#x27;%d/%m/%Y&#x27;)) AS sales_year,
+        `Sales` AS sales,
+        `Profit` AS profit
+    FROM superstore_sales.orders_staging
+) AS order_lines
+WHERE sales_year IN (2020, 2021)
+GROUP BY region
+ORDER BY sales_change DESC;</code></pre>
+      </details>
+    </section>
+    <section class="section wrap" aria-labelledby="findings-heading">
+      <h2 id="findings-heading">What the analysis found</h2>
+      <ul class="findings">
+        <li><h3>South Technology recorded the largest category profit decline</h3><p>Technology sales in the South rose by $7,805.77 between 2020 and 2021, while profit fell by $5,578.94.</p></li>
+        <li><h3>Machines drove the decline within South Technology</h3><p>Machine profit fell by $8,215.72, from $4,308.11 in 2020 to a $3,907.61 loss in 2021. Gains in Copiers and Phones offset part of the decline.</p></li>
+        <li><h3>Four heavily discounted order lines accounted for the loss</h3><p>South Machines order lines at a 50% discount lost $4,147.60 in 2021, with a −43.82% margin. Review the product costs and pricing on those four lines before changing discount policy.</p></li>
+      </ul>
+    </section>
+    <section class="section wrap" aria-labelledby="report-heading">
+      <h2 id="report-heading">Dashboard previews</h2>
+      <div class="previews">
+        <figure>
+          <a href="assets/sales-performance/sales-overview.png"><img src="assets/sales-performance/sales-overview.png" alt="Full-size sales overview with KPIs, monthly sales trends, and category comparisons" loading="lazy"></a>
+          <figcaption><strong>Sales Performance.</strong> Compare category sales and margins, and filter the monthly trend by region and year.</figcaption>
+        </figure>
+        <figure>
+          <a href="assets/sales-performance/profitability-analysis.png"><img src="assets/sales-performance/profitability-analysis.png" alt="Full-size profitability page with two matrices and red bars for loss-making subcategories" loading="lazy"></a>
+          <figcaption><strong>Profitability Analysis.</strong> Find loss-making subcategories and inspect their results by year and discount rate.</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+  <footer class="wrap"><p>© 2026 Muhammad Firas Haiman Bin Taha</p></footer>
+</body>
+</html>
